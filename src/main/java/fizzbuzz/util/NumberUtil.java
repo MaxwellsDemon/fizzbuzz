@@ -20,21 +20,22 @@ public class NumberUtil {
 
     /**
      * <p>
-     * Identifies multiples of "3 but not 5" as "Fizz", "5 but not 3" as "Buzz", and
-     * "both 3 and 5" as "FizzBuzz".
+     * Groups numbers up to the limit based on categories from
+     * {@link #categorizer(int)}
      * 
-     * @param value
+     * @param limit
      *            An integer
      * @return A non-null result categorization
      * @throws BadNumberException
+     *             When value is not an integer
      */
-    public static FizzBuzzResult categorizeFizzBuzz(String value) throws BadNumberException {
-        if (value == null || value.isEmpty()) {
+    public static FizzBuzzResult categorizeFizzBuzz(String limit) throws BadNumberException {
+        if (limit == null || limit.isEmpty()) {
             throw new BadNumberException("FizzBuzz requires an integer");
         }
         int parsedValue;
         try {
-            parsedValue = Integer.parseInt(value);
+            parsedValue = Integer.parseInt(limit);
         } catch (NumberFormatException e) {
             throw new BadNumberException("FizzBuzz requires an integer", e);
         }
@@ -42,16 +43,26 @@ public class NumberUtil {
     }
 
     /**
-     * See {@link #categorizeFizzBuzz(String)}
+     * <p>
+     * Groups numbers up to the limit based on categories from
+     * {@link #categorizer(int)}
      * 
-     * @param value
+     * <p>
+     * Uses collection streams to group numbers based on fizzbuzz multiples.
+     * Categorization function can be expanded readily with additional groupings
+     * should 3 and 5 no longer suffice.
+     * 
+     * @param limit
      * @return A non-null result categorization
      * @throws BadNumberException
      */
-    public static FizzBuzzResult categorizeFizzBuzz(int value) throws BadNumberException {
+    public static FizzBuzzResult categorizeFizzBuzz(int limit) throws BadNumberException {
+        if (limit < 0) {
+            throw new BadNumberException("FizzBuzz requires a non-negative integer as the upper limit");
+        }
         return new FizzBuzzResult(
 
-                IntStream.rangeClosed(1, Math.abs(value))
+                IntStream.rangeClosed(1, limit)
 
                         .filter(i -> categorizer(i) != null) // Drop uncategorized values (avoids NPE during grouping)
 

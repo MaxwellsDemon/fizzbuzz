@@ -10,9 +10,14 @@ import java.util.TreeMap;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * The payload is at {@link #getResult()}.
+ * 
+ * @author Curtis Fleming
+ */
 public class FizzBuzzResult {
 
-    private SortedMap<Category, List<Integer>> result;
+    private final SortedMap<Category, List<Integer>> result;
 
     public FizzBuzzResult() {
         this(new HashMap<>());
@@ -30,9 +35,10 @@ public class FizzBuzzResult {
     }
 
     /**
-     * A living map, update as desired to change the backing object
+     * A living map, update as desired to change the backing object. Can be
+     * serialized to JSON.
      * 
-     * @return
+     * @return Non-null map
      */
     public SortedMap<Category, List<Integer>> getResult() {
         return result;

@@ -1,10 +1,13 @@
-package fizzbuzz;
+package fizzbuzz.util;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
 
 import org.junit.Test;
+
+import fizzbuzz.BadNumberException;
+import fizzbuzz.FizzBuzzResult;
 import fizzbuzz.util.NumberUtil;
 
 public class NumberUtilTest {
@@ -14,7 +17,7 @@ public class NumberUtilTest {
         test15(true);
     }
 
-    @Test
+    @Test(expected = BadNumberException.class)
     public void testNegative15() throws BadNumberException {
         test15(false);
     }

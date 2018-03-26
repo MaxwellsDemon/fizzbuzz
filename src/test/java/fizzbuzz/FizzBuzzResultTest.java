@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import fizzbuzz.util.NumberUtilTest;
+
 public class FizzBuzzResultTest {
 
     /**
