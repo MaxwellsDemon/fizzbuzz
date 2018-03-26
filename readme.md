@@ -1,3 +1,3 @@
 Proof of Concept
-Swagger + Spring Boot + Maven
+Spring Boot + Maven + Java 8
 
